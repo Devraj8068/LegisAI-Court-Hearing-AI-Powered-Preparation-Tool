@@ -18,7 +18,7 @@ st.set_page_config(page_title="AI-Powered Court Hearing Tool", layout="wide")
 if not GEMINI_API_KEY:
     st.error("GEMINI_API_KEY is not set. Copy .env.example to .env and add your Gemini API key.")
     st.stop()
-st.title("🧠 EAIEPL - AI Powered Court Hearing Preparation Tool")
+st.title("🧠 LegisAI - AI Powered Court Hearing Preparation Tool")
 
 # Sidebar Inputs
 st.sidebar.header("Case Information")
