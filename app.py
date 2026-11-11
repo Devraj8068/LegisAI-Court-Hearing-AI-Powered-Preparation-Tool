@@ -1,15 +1,23 @@
 # app.py
 
+import os
 import streamlit as st
 import google.generativeai as genai
 from docx import Document
 from io import BytesIO
 
-# Configure Gemini API
-genai.configure(api_key="AIzaSyApYW1IwkubnWt77vY3kXm_USry03CY3Gc")
+from dotenv import load_dotenv
+
+# Configure Gemini API (key is read from the environment / .env file, never hard-coded)
+load_dotenv()
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel(model_name="models/gemini-1.5-flash")
 
 st.set_page_config(page_title="AI-Powered Court Hearing Tool", layout="wide")
+if not GEMINI_API_KEY:
+    st.error("GEMINI_API_KEY is not set. Copy .env.example to .env and add your Gemini API key.")
+    st.stop()
 st.title("🧠 EAIEPL - AI Powered Court Hearing Preparation Tool")
 
 # Sidebar Inputs
